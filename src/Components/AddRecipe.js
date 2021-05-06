@@ -7,6 +7,7 @@ const AddRecipe = ({onAdd}) => {
     const [title, setTitle] = useState('');
     const [ingredients, setIngredients] = useState('');
     
+    
     const onSubmit = (e) => {
       e.preventDefault();
       if(!title) {
@@ -15,15 +16,18 @@ const AddRecipe = ({onAdd}) => {
       }
       onAdd({title, ingredients})
       setTitle('')
+    //   setIngredients(ingredients.split(',')) //not working 
       setIngredients('')
       setOpen(false)
     }
+
+   
+
     const handleOpen = (e) => {
-        console.log("open modal Add");
         setOpen(true);
     };
     const handleClose = (e) => {
-        console.log("open modal close");
+
         setOpen(false);
     };
 
@@ -52,7 +56,7 @@ const AddRecipe = ({onAdd}) => {
                                 type="text"
                                 margin="dense" 
                                 id="outlined-basic" 
-                                label="Edit Recipe Title" 
+                                label="Type Recipe Title" 
                                 value ={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 variant="outlined" 
@@ -66,7 +70,7 @@ const AddRecipe = ({onAdd}) => {
                                 margin="dense" 
                                 id="outlined-basic" 
                                 label="Type Ingredients separated by a comma" 
-                                value={ingredients}
+                                value={ingredients.split(",")}
                                 onChange={(e) => setIngredients(e.target.value)}
                                 variant="outlined" 
                                 fullWidth= 'true'/>
