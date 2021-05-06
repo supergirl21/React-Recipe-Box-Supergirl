@@ -33,24 +33,24 @@ function App() {
       setRecipes([...recipes, newRecipe])
     }
 
-    //Edit Recipe
    
-    const handleEditRecipe = (id) => {
-      console.log('edit in app js', id); //this updates the ingredients only in backend not in UI
-      const updatedRecipes  = [...recipes].map((recipes) => {
-        if(recipes.id === id) {
-          recipes.title = !recipes.title
-          recipes.ingredients = !recipes.ingredients
-        }
-        return recipes
-      })
-      setRecipes([...updatedRecipes])
-    }
+    //To Edit the recipe
+  const handleUpdate = (title, ingredients) => {
+    const updatedRecipe = {
+      title: title,
+      ingredients: ingredients.split(",")
+    } 
+    const updatedRecipes = [...recipes, updatedRecipe]
+  // editRecipesArray[id] = recipe;
+    setRecipes(updatedRecipes);
+
+  console.log("edit recipe", setRecipes);
+  };
+    
    
 
     //Delete Recipe
     const deleteRecipe = (id) => {
-      // console.log('delete', id);
       setRecipes(recipes.filter((recipe) => recipe.id !== id))
     }
 
@@ -60,8 +60,8 @@ function App() {
         <h1 className="title-recipe">
         Supergirl's Recipe Box is here!
         </h1>
-        <AccordionRecipes recipes={recipes} onDelete={deleteRecipe} onEdit={handleEditRecipe} /> 
-        <AddRecipe onAdd={addRecipe} />
+        <AccordionRecipes recipes={recipes} onDelete={deleteRecipe} handleUpdate={handleUpdate}/> 
+        <AddRecipe recipes={recipes} onAdd={addRecipe} />
     </div>
   );
 }

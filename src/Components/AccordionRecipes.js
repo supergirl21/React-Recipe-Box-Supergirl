@@ -1,17 +1,17 @@
 import React from 'react';
-import AccRecipe from './AccRecipe';
+import EditRecipe from './EditRecipe';
 
 
-const AccordionRecipes = ({recipes, onDelete, onEdit}) =>{
+
+const AccordionRecipes = ({recipes, onDelete, handleUpdate}) => {
  
     return (
         <div className='homecontainer' >
           {recipes.map(recipe => {
               return (
-              <AccRecipe key={recipe.id} recipe={recipe} onDelete={onDelete} onEdit={onEdit}/>
+              <EditRecipe key={recipe.id} recipe={recipe} onDelete={onDelete} handleUpdate={handleUpdate}/>
               )
-              })} 
-             
+              })}  
         </div>
       )
 }
